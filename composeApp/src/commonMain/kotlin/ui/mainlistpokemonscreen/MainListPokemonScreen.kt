@@ -1,13 +1,19 @@
 package ui.mainlistpokemonscreen
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.TopAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import navigation.NavGo
 import presentation.mainlistpokemon.events.MainListPokemonUIState
 import theme.DarkModeColors
@@ -24,22 +30,26 @@ fun MainListPokemonScreen(
     colors: DarkModeColors
 ) {
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         topBar = {
-            CenterAlignedTopAppBar(
+            TopAppBar(
+                backgroundColor = colors.background,
                 title = {
-                    "Pokemon Lista"
+                    Text(
+                        text = "Pokedex - Lista de Pokemons",
+                        fontSize = 25.sp,
+                        color = colors.textColor
+                    )
                 },
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = colors.background,
-                    titleContentColor = colors.textColor,
-                )
+                elevation = 0.dp,
             )
-        }
+        },
     ) { paddingValues ->
         ListPokemonContent(
             uiState = uiState,
             intentHandler = intentHandler,
             navGo = navGo,
+            colors = colors,
             paddingValues = paddingValues
         )
     }
@@ -50,7 +60,8 @@ fun ListPokemonContent(
     uiState: MainListPokemonUIState,
     intentHandler: MainListPokemonIntentHandler,
     navGo: NavGo,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    colors: DarkModeColors
 ) {
     val number = remember { mutableStateOf(0) }
 
@@ -60,6 +71,7 @@ fun ListPokemonContent(
                 listPokemonItems = currentState.listPokemon,
                 intentHandler = intentHandler,
                 navGo = navGo,
+                colors = colors,
                 number = number,
                 paddingValues = paddingValues
             )

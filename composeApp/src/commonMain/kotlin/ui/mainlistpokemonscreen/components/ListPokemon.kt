@@ -12,12 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import data.models.listpokemon.RemoteListPokemon
 import navigation.NavGo
+import theme.DarkModeColors
 
 @Composable
 fun ListPokemon(
     listPokemonItems: RemoteListPokemon,
     number: MutableState<Int>,
-    navGo: NavGo
+    navGo: NavGo,
+    colors: DarkModeColors
 ) {
     val lazyListState = rememberLazyListState()
     Card(
@@ -27,6 +29,7 @@ fun ListPokemon(
             .fillMaxHeight(0.92f)
     ) {
         TextHeadDescription(
+            colors = colors,
             listPokemonItems = listPokemonItems,
             number = number
         )

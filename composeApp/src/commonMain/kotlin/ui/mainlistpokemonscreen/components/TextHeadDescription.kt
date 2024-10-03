@@ -9,13 +9,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import data.models.listpokemon.RemoteListPokemon
+import theme.DarkModeColors
 
 @Composable
-fun TextHeadDescription(listPokemonItems: RemoteListPokemon, number: MutableState<Int>) {
+fun TextHeadDescription(
+    listPokemonItems: RemoteListPokemon,
+    number: MutableState<Int>,
+    colors: DarkModeColors
+) {
     Text(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 16.dp, start = 16.dp),
+        color = colors.textColor,
         text = "Total: " + " ${listPokemonItems.count}",
         fontSize = 20.sp,
     )

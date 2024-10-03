@@ -8,6 +8,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import data.models.listpokemon.RemoteListPokemon
 import navigation.NavGo
+import theme.DarkModeColors
 import ui.mainlistpokemonscreen.MainListPokemonIntentHandler
 import ui.mainlistpokemonscreen.components.ListPokemon
 import ui.mainlistpokemonscreen.components.PagesButton
@@ -18,18 +19,21 @@ fun MainListPokemonState(
     intentHandler: MainListPokemonIntentHandler,
     number: MutableState<Int>,
     navGo: NavGo,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    colors: DarkModeColors
 ) {
     Column(
         modifier = Modifier
             .padding(paddingValues)
     ) {
         ListPokemon(
+            colors = colors,
             listPokemonItems = listPokemonItems,
             number = number,
             navGo = navGo
         )
         PagesButton(
+            colors = colors,
             listPokemonItems = listPokemonItems,
             intentHandler = intentHandler,
             number = number
