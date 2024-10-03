@@ -1,5 +1,6 @@
 package data.remote
 
+import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
 import data.models.Constants.BASE_URL
 import data.models.listpokemon.RemoteListPokemon
 import data.sources.PokemonSourceRemote
@@ -18,5 +19,10 @@ internal class PokemonRemoteImpl(
                 parameters.append("limit", 20.toString())
             }
         }.body<RemoteListPokemon>()
+    }
+
+    override suspend fun getDetailPokemon(namePokemon: String): RemoteListDetailPokemon {
+        return httpClient.get("$BASE_URL/api/v2/pokemon/$namePokemon")
+            .body<RemoteListDetailPokemon>()
     }
 }

@@ -1,5 +1,6 @@
 package data
 
+import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
 import data.models.listpokemon.RemoteListPokemon
 import data.sources.PokemonSourceRemote
 import kotlinx.coroutines.flow.Flow
@@ -11,5 +12,10 @@ class PokemonRepository(
     fun getListPokemon(page: Int): Flow<RemoteListPokemon> = flow {
         val listPokemon = remote.getListPokemonRemote(page)
         emit(listPokemon)
+    }
+
+    fun getDetailPokemon(namePokemon: String): Flow<RemoteListDetailPokemon> = flow {
+        val detailPokemon = remote.getDetailPokemon(namePokemon)
+        emit(detailPokemon)
     }
 }

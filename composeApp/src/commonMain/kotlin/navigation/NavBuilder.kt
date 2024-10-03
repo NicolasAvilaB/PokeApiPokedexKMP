@@ -2,9 +2,15 @@ package navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
+import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonIntentHandler
+import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonScreen
 import moe.tlaster.precompose.flow.collectAsStateWithLifecycle
+import moe.tlaster.precompose.navigation.BackStackEntry
+import moe.tlaster.precompose.navigation.path
 import presentation.mainlistpokemon.MainListPokemonViewModel
 import theme.DarkModeColors
 import ui.mainlistpokemonscreen.MainListPokemonIntentHandler
@@ -35,4 +41,41 @@ internal fun navMainListPokemon(
         navGo = navGo,
         colors = colors
     )
+}
+
+
+@Composable
+internal fun navDetailPokemon(
+    viewModel: DetailPokemonViewModel,
+    intentHandler: DetailPokemonIntentHandler,
+    navGo: NavGo,
+    colors: DarkModeColors,
+    backStackEntry: BackStackEntry,
+) {
+    val pokemon = mutableStateOf("")
+    val namePokemon = backStackEntry.path<String>("namePokemon")
+    namePokemon?.let { result -> pokemon.value = result}
+    LaunchedEffect(key1 = viewModel) {
+        viewModel.processUserIntentDetailPokemon(
+            intentHandler.detailPokemonUIntents(pokemon.value)
+        )
+    }
+
+    val detailPokemonIntentHandler = intentHandler.apply {
+        coroutineScope = rememberCoroutineScope()
+    }
+
+    val uiState = remember { viewModel.detailViewPokemonState() }
+        .collectAsStateWithLifecycle(
+            initial = viewModel.loadingUiState
+        ).value
+
+    DetailPokemonScreen(
+        intentHandler = detailPokemonIntentHandler,
+        namePokemon = namePokemon.toString(),
+        uiState = uiState,
+        navGo = navGo,
+        colors = colors
+    )
+
 }

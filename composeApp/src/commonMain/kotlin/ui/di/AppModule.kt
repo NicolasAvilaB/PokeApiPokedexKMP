@@ -1,5 +1,8 @@
 package ui.di
 
+import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonProcessor
+import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonReducer
+import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
 import data.PokemonRepository
 import data.remote.PokemonRemoteImpl
 import data.sources.PokemonSourceRemote
@@ -31,6 +34,9 @@ fun AppModule() = module {
     single {
         MainListPokemonProcessor(get())
     }
+    single {
+        DetailPokemonProcessor(get())
+    }
 
     single {
         MainListPokemonReducer()
@@ -38,5 +44,13 @@ fun AppModule() = module {
 
     factory {
         MainListPokemonViewModel(get(), get())
+    }
+
+    single {
+        DetailPokemonReducer()
+    }
+
+    factory {
+        DetailPokemonViewModel(get(), get())
     }
 }

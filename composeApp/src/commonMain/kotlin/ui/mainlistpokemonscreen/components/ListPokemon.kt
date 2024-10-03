@@ -43,6 +43,9 @@ fun ListPokemon(
                         ListSelectItem(
                             name = remotePokemon.name.toString(),
                             onClick = {
+                                navGo.logDetailPokemon.invoke(
+                                    remotePokemon.name.toString()
+                                )
                             }
                         )
                     }

@@ -109,6 +109,6 @@ internal object Constants {
 
     const val WEIGHT= "weight"
 
-    const val BASE_URL = "https://pokeapi.co/"
+    const val BASE_URL = "https://pokeapi.co"
 
 }

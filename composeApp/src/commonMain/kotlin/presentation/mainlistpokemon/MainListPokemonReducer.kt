@@ -1,6 +1,5 @@
 package presentation.mainlistpokemon
 
-import org.jetbrains.skia.impl.InteropPointer
 import presentation.mainlistpokemon.MainListPokemonResult.GetListPokemonResult.Error
 import presentation.mainlistpokemon.MainListPokemonResult.GetListPokemonResult.InProgress
 import presentation.mainlistpokemon.MainListPokemonResult.GetListPokemonResult.Success

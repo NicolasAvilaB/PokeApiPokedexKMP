@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
+import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonIntentHandler
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
@@ -20,8 +22,10 @@ fun NavController() {
 
     val colors = getColorsTheme()
 
-    val viewModel = koinViewModel(MainListPokemonViewModel::class) { parametersOf()}
+    val viewModel = koinViewModel(MainListPokemonViewModel::class) { parametersOf() }
     val intentHandler = remember { MainListPokemonIntentHandler() }
+    val detailPokemonviewModel = koinViewModel(DetailPokemonViewModel::class) { parametersOf() }
+    val detailPokemonIntentHandler = remember { DetailPokemonIntentHandler() }
 
     NavHost(
         modifier = Modifier.background(color = colors.background),
@@ -36,6 +40,18 @@ fun NavController() {
                     intentHandler = intentHandler,
                     navGo = navGo,
                     colors = colors
+                )
+            }
+        )
+        scene(
+            route = NavRoutes.DetailPokemonScreen("{namePokemon}?").route,
+            content = { backStackEntry ->
+                navDetailPokemon(
+                    viewModel = detailPokemonviewModel,
+                    intentHandler = detailPokemonIntentHandler,
+                    backStackEntry = backStackEntry,
+                    colors = colors,
+                    navGo = navGo
                 )
             }
         )
