@@ -1,10 +1,13 @@
 package com.pokemon.ui.pokeapipokedex.data.models.detailpokemon
 
+import data.models.Constants.GAME_INDEX
+import data.models.Constants.VERSION
 import data.models.listpokemon.RemotePokemon
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class RemoteGameIndices (
-    val gameindex: Int?,
-    val version: RemotePokemon?
+    @SerialName(GAME_INDEX) val gameindex: Int?,
+    @SerialName(VERSION) val version: RemotePokemon?
 )

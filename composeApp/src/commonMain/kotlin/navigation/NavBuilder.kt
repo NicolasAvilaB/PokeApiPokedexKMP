@@ -52,12 +52,10 @@ internal fun navDetailPokemon(
     colors: DarkModeColors,
     backStackEntry: BackStackEntry,
 ) {
-    val pokemon = mutableStateOf("")
     val namePokemon = backStackEntry.path<String>("namePokemon")
-    namePokemon?.let { result -> pokemon.value = result}
     LaunchedEffect(key1 = viewModel) {
         viewModel.processUserIntentDetailPokemon(
-            intentHandler.detailPokemonUIntents(pokemon.value)
+            intentHandler.detailPokemonUIntents(namePokemon.toString())
         )
     }
 

@@ -49,6 +49,8 @@ internal object Constants {
     const val VERSION_GROUP = "version_group"
 
     const val ORDER = "order"
+    const val PAST_ABILITIES = "past_abilities"
+    const val PAST_TYPES = "past_types"
 
     const val SPECIES = "species"
 
