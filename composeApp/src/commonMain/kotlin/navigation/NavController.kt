@@ -6,9 +6,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonIntentHandler
+import mediaplayer.MediaPlayerController
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
+import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
 import presentation.mainlistpokemon.MainListPokemonViewModel
 import theme.getColorsTheme
@@ -26,6 +28,8 @@ fun NavController() {
     val intentHandler = remember { MainListPokemonIntentHandler() }
     val detailPokemonviewModel = koinViewModel(DetailPokemonViewModel::class) { parametersOf() }
     val detailPokemonIntentHandler = remember { DetailPokemonIntentHandler() }
+
+    val mediaPlayerController = koinInject<MediaPlayerController>()
 
     NavHost(
         modifier = Modifier.background(color = colors.background),
@@ -50,6 +54,7 @@ fun NavController() {
                     viewModel = detailPokemonviewModel,
                     intentHandler = detailPokemonIntentHandler,
                     backStackEntry = backStackEntry,
+                    mediaPlayerController = mediaPlayerController,
                     colors = colors,
                     navGo = navGo
                 )

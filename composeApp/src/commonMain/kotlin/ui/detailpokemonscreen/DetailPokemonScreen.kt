@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -24,6 +25,7 @@ import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.events.DetailPok
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.viewstate.DetailPokemonState
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.viewstate.ErrorState
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.viewstate.LoadingState
+import mediaplayer.MediaPlayerController
 import navigation.NavGo
 import theme.DarkModeColors
 
@@ -34,7 +36,8 @@ fun DetailPokemonScreen(
     navGo: NavGo,
     intentHandler: DetailPokemonIntentHandler,
     namePokemon: String,
-    colors: DarkModeColors
+    colors: DarkModeColors,
+    mediaPlayerController: MediaPlayerController
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -51,7 +54,7 @@ fun DetailPokemonScreen(
                 navigationIcon = {
                     IconButton(onClick = { navGo.popBackStack.invoke() }) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Volver",
                             tint = MaterialTheme.colorScheme.onPrimary
                         )
@@ -63,6 +66,7 @@ fun DetailPokemonScreen(
     ) { paddingValues ->
         DetailPokemonContent(
             intentHandler = intentHandler,
+            mediaPlayerController = mediaPlayerController,
             namePokemon = namePokemon,
             uiState = uiState,
             paddingValues = paddingValues
@@ -77,11 +81,13 @@ fun DetailPokemonContent(
     paddingValues: PaddingValues,
     intentHandler: DetailPokemonIntentHandler,
     namePokemon: String,
+    mediaPlayerController: MediaPlayerController,
 ) {
     when (val currentState = uiState) {
         is DisplayDetailPokemonUiState -> {
             DetailPokemonState(
                 detailPokemon = currentState.detailPokemon,
+                mediaPlayerController= mediaPlayerController,
                 paddingValues = paddingValues
             )
         }

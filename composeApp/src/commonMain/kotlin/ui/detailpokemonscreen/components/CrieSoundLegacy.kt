@@ -12,17 +12,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
+import mediaplayer.MediaPlayerController
 
 @Composable
 fun CrieSoundLegacy(
+    mediaPlayerController: MediaPlayerController,
     detailPokemon: RemoteListDetailPokemon,
     paddingText: Dp
 ){
     Button(
         onClick = {
             CoroutineScope(Dispatchers.IO).launch {
-                val soundLegacy = detailPokemon.cries?.legacy
-
+                val soundLatest = detailPokemon.cries?.latest
+                mediaPlayerController.playSound(soundLatest.toString())
             }
         },
         modifier = Modifier

@@ -2,12 +2,12 @@ package navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonIntentHandler
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonScreen
+import mediaplayer.MediaPlayerController
 import moe.tlaster.precompose.flow.collectAsStateWithLifecycle
 import moe.tlaster.precompose.navigation.BackStackEntry
 import moe.tlaster.precompose.navigation.path
@@ -51,6 +51,7 @@ internal fun navDetailPokemon(
     navGo: NavGo,
     colors: DarkModeColors,
     backStackEntry: BackStackEntry,
+    mediaPlayerController: MediaPlayerController,
 ) {
     val namePokemon = backStackEntry.path<String>("namePokemon")
     LaunchedEffect(key1 = viewModel) {
@@ -71,6 +72,7 @@ internal fun navDetailPokemon(
     DetailPokemonScreen(
         intentHandler = detailPokemonIntentHandler,
         namePokemon = namePokemon.toString(),
+        mediaPlayerController = mediaPlayerController,
         uiState = uiState,
         navGo = navGo,
         colors = colors

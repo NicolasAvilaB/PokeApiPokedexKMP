@@ -1,7 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -34,6 +30,7 @@ kotlin {
         
         androidMain.dependencies {
             implementation(compose.preview)
+            implementation(project(":shared"))
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
@@ -44,6 +41,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(compose.runtime)
+            implementation(project(":shared"))
             api(compose.foundation)
             api(compose.animation)
             api(compose.materialIconsExtended)
@@ -71,6 +69,7 @@ kotlin {
             implementation(libs.ktor.content.negotiation)
         }
         iosMain.dependencies {
+            implementation(project(":shared"))
             implementation(libs.ktor.client.darwin)
         }
     }
@@ -112,4 +111,6 @@ android {
         debugImplementation(compose.uiTooling)
     }
 }
-
+dependencies {
+    implementation(project(":shared"))
+}

@@ -13,11 +13,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.text.PokemonText16
+import mediaplayer.MediaPlayerController
 
 @Composable
 fun HeaderAbility(
     detailPokemon: RemoteListDetailPokemon,
-    paddingText: Dp
+    paddingText: Dp,
+    mediaPlayerController: MediaPlayerController
 ){
     Card(
         modifier = Modifier
@@ -46,10 +48,12 @@ fun HeaderAbility(
             }
         }
         CrieSoundLatest(
+            mediaPlayerController = mediaPlayerController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         CrieSoundLegacy(
+            mediaPlayerController = mediaPlayerController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
