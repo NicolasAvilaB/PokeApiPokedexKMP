@@ -6,6 +6,7 @@ import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonVie
 import data.PokemonRepository
 import data.remote.PokemonRemoteImpl
 import data.sources.PokemonSourceRemote
+import imagesview.ImagesViewController
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
@@ -17,6 +18,10 @@ import presentation.mainlistpokemon.MainListPokemonReducer
 import presentation.mainlistpokemon.MainListPokemonViewModel
 
 fun AppModule() = module {
+
+    single{
+        ImagesViewController()
+    }
 
     factory {
         MediaPlayerController()

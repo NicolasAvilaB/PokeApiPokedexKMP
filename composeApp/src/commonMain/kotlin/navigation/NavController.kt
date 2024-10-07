@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonIntentHandler
+import imagesview.ImagesViewController
 import mediaplayer.MediaPlayerController
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
@@ -30,6 +31,7 @@ fun NavController() {
     val detailPokemonIntentHandler = remember { DetailPokemonIntentHandler() }
 
     val mediaPlayerController = koinInject<MediaPlayerController>()
+    val imagesViewController = koinInject<ImagesViewController>()
 
     NavHost(
         modifier = Modifier.background(color = colors.background),
@@ -51,6 +53,7 @@ fun NavController() {
             route = NavRoutes.DetailPokemonScreen("{namePokemon}?").route,
             content = { backStackEntry ->
                 navDetailPokemon(
+                    imagesViewController = imagesViewController,
                     viewModel = detailPokemonviewModel,
                     intentHandler = detailPokemonIntentHandler,
                     backStackEntry = backStackEntry,

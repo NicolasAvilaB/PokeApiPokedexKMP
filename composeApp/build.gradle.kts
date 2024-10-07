@@ -33,6 +33,7 @@ kotlin {
             implementation(project(":shared"))
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.coil.compose)
             implementation(libs.kotlinx.coroutines.android)
             implementation(project.dependencies.platform("io.insert-koin:koin-bom:3.5.1"))
             implementation("io.insert-koin:koin-core")

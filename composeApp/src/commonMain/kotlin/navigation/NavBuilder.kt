@@ -7,6 +7,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.DetailPokemonViewModel
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonIntentHandler
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.DetailPokemonScreen
+import imagesview.ImagesViewController
 import mediaplayer.MediaPlayerController
 import moe.tlaster.precompose.flow.collectAsStateWithLifecycle
 import moe.tlaster.precompose.navigation.BackStackEntry
@@ -52,6 +53,7 @@ internal fun navDetailPokemon(
     colors: DarkModeColors,
     backStackEntry: BackStackEntry,
     mediaPlayerController: MediaPlayerController,
+    imagesViewController: ImagesViewController,
 ) {
     val namePokemon = backStackEntry.path<String>("namePokemon")
     LaunchedEffect(key1 = viewModel) {
@@ -70,6 +72,7 @@ internal fun navDetailPokemon(
         ).value
 
     DetailPokemonScreen(
+        imagesViewController = imagesViewController,
         intentHandler = detailPokemonIntentHandler,
         namePokemon = namePokemon.toString(),
         mediaPlayerController = mediaPlayerController,

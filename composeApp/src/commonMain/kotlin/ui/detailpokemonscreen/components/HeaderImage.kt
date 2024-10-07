@@ -11,11 +11,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.text.PokemonText24
+import imagesview.ImagesViewController
 
 @Composable
 fun HeaderImage(
     detailPokemon: RemoteListDetailPokemon,
-    paddingText: Dp
+    paddingText: Dp,
+    imagesViewController: ImagesViewController
 ){
     Card(
         modifier = Modifier
@@ -25,6 +27,9 @@ fun HeaderImage(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            imagesViewController.headerImage(
+                detailPokemon.sprites?.frontdefault.toString()
+            )
 
             PokemonText24(
                 text = "${detailPokemon.name?.capitalize()}",

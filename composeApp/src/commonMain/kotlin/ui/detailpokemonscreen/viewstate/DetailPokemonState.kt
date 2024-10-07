@@ -27,13 +27,15 @@ import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.spritelistgener
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.spritelistgeneration.ListGeneration6
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.spritelistgeneration.ListGeneration7
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.spritelistgeneration.ListGeneration8
+import imagesview.ImagesViewController
 import mediaplayer.MediaPlayerController
 
 @Composable
 fun DetailPokemonState(
     detailPokemon: RemoteListDetailPokemon,
     paddingValues: PaddingValues,
-    mediaPlayerController: MediaPlayerController
+    mediaPlayerController: MediaPlayerController,
+    imagesViewController: ImagesViewController
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -45,6 +47,7 @@ fun DetailPokemonState(
     ) {
         Row(modifier = Modifier.height(210.dp)) {
             HeaderImage(
+                imagesViewController = imagesViewController,
                 detailPokemon = detailPokemon,
                 paddingText = paddingText
             )

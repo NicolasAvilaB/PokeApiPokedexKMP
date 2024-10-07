@@ -1,13 +1,10 @@
 package com.pokemon.ui.pokeapipokedex.ui.detailpokemon
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +22,7 @@ import com.pokemon.ui.pokeapipokedex.presentation.detailpokemon.events.DetailPok
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.viewstate.DetailPokemonState
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.viewstate.ErrorState
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.viewstate.LoadingState
+import imagesview.ImagesViewController
 import mediaplayer.MediaPlayerController
 import navigation.NavGo
 import theme.DarkModeColors
@@ -37,7 +35,8 @@ fun DetailPokemonScreen(
     intentHandler: DetailPokemonIntentHandler,
     namePokemon: String,
     colors: DarkModeColors,
-    mediaPlayerController: MediaPlayerController
+    mediaPlayerController: MediaPlayerController,
+    imagesViewController: ImagesViewController
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -65,6 +64,7 @@ fun DetailPokemonScreen(
         },
     ) { paddingValues ->
         DetailPokemonContent(
+            imagesViewController = imagesViewController,
             intentHandler = intentHandler,
             mediaPlayerController = mediaPlayerController,
             namePokemon = namePokemon,
@@ -82,10 +82,12 @@ fun DetailPokemonContent(
     intentHandler: DetailPokemonIntentHandler,
     namePokemon: String,
     mediaPlayerController: MediaPlayerController,
+    imagesViewController: ImagesViewController,
 ) {
     when (val currentState = uiState) {
         is DisplayDetailPokemonUiState -> {
             DetailPokemonState(
+                imagesViewController = imagesViewController,
                 detailPokemon = currentState.detailPokemon,
                 mediaPlayerController= mediaPlayerController,
                 paddingValues = paddingValues
@@ -93,15 +95,11 @@ fun DetailPokemonContent(
         }
 
         is ErrorUiState ->{
-            Column(
-                modifier = Modifier.padding(paddingValues)
-            ) {
-                Text(""+currentState.error)
                 ErrorState(
                     intentHandler = intentHandler,
                     namePokemon = namePokemon
                 )
-            }
+
         }
         LoadingUiState -> LoadingState()
     }

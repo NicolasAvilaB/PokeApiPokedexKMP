@@ -23,7 +23,7 @@ fun CrieSoundLegacy(
     Button(
         onClick = {
             CoroutineScope(Dispatchers.IO).launch {
-                val soundLatest = detailPokemon.cries?.latest
+                val soundLatest = detailPokemon.cries?.legacy
                 mediaPlayerController.playSound(soundLatest.toString())
             }
         },

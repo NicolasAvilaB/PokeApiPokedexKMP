@@ -11,14 +11,21 @@ androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.0"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
+coil3Version = "3.0.0-alpha06"
+coilCompose = "2.7.0"
 compose-plugin = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.20"
 ktor = "2.3.12"
 coroutines = "1.7.3"
 kotlinVersion = "1.9.0"
+skiko = "0.8.4"
+runtimeAndroid = "1.7.3"
 
 [libraries]
+coil3 = { group = "io.coil-kt.coil3", name= "coil-compose", version.ref = "coil3Version" }
+coil3-network-ktor = { group = "io.coil-kt.coil3", name= "coil-network-ktor", version.ref = "coil3Version" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -39,6 +46,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+skiko = { module = "org.jetbrains.skiko:skiko", version.ref = "skiko" }
+androidx-runtime-android = { group = "androidx.compose.runtime", name = "runtime-android", version.ref = "runtimeAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
