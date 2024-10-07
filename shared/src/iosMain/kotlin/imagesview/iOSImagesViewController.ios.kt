@@ -1,5 +1,7 @@
 package imagesview
 
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -18,6 +20,7 @@ actual class ImagesViewController actual constructor() {
             contentDescription = null,
             modifier = Modifier
                 .width(150.dp)
+                .fillMaxHeight(0.8f)
                 .clip(MaterialTheme.shapes.small),
             contentScale = Crop
         )
