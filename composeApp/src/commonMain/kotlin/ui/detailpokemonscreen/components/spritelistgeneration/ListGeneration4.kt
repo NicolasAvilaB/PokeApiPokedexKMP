@@ -11,16 +11,45 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
-import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.ImagePokemon
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.text.PokemonText18
+import imagesview.ImagesViewController
 
 @Composable
 fun ListGeneration4(
     detailPokemon: RemoteListDetailPokemon,
-    paddingText: Dp
+    paddingText: Dp,
+    imagesViewController: ImagesViewController
 ) {
     val generation = detailPokemon.sprites?.versions?.generationiv
-    if (generation?.diamondpearl?.backdefault != null)
+    fun matchUrlPokemon(): List<String?> {
+        return listOf(
+            generation?.diamondpearl?.backdefault,
+            generation?.diamondpearl?.backfemale,
+            generation?.diamondpearl?.backshiny,
+            generation?.diamondpearl?.backshinyfemale,
+            generation?.diamondpearl?.frontdefault,
+            generation?.diamondpearl?.frontfemale,
+            generation?.diamondpearl?.frontshiny,
+            generation?.diamondpearl?.frontshinyfemale,
+            generation?.heartgoldsoulsilver?.backdefault,
+            generation?.heartgoldsoulsilver?.backfemale,
+            generation?.heartgoldsoulsilver?.backshiny,
+            generation?.heartgoldsoulsilver?.backshinyfemale,
+            generation?.heartgoldsoulsilver?.frontdefault,
+            generation?.heartgoldsoulsilver?.frontfemale,
+            generation?.heartgoldsoulsilver?.frontshiny,
+            generation?.heartgoldsoulsilver?.frontshinyfemale,
+            generation?.platinum?.backdefault,
+            generation?.platinum?.backfemale,
+            generation?.platinum?.backshiny,
+            generation?.platinum?.backshinyfemale,
+            generation?.platinum?.frontdefault,
+            generation?.platinum?.frontfemale,
+            generation?.platinum?.frontshiny,
+            generation?.platinum?.frontshinyfemale,
+        )
+    }
+    if (generation?.diamondpearl?.backdefault != null) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -36,46 +65,14 @@ fun ListGeneration4(
                     .height(150.dp)
                     .padding(paddingText)
             ) {
-
-                /*generation.diamondpearl?.let { sprite ->
-                    sprite.javaClass.declaredFields.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
+                matchUrlPokemon().forEach { url ->
+                    url?.let { result ->
+                        item {
+                            imagesViewController.headerImage(result)
                         }
                     }
                 }
-                generation.heartgoldsoulsilver?.let { sprite ->
-                    sprite.javaClass.declaredFields.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
-                        }
-                    }
-                }
-                generation.platinum?.let { sprite ->
-                    sprite.javaClass.declaredFields.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
-                        }
-                    }
-                }*/
             }
         }
+    }
 }

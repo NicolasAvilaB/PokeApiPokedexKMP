@@ -87,34 +87,42 @@ fun DetailPokemonState(
             )
         }
         ListGeneration1(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration2(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration3(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration4(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration5(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration6(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration7(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )
         ListGeneration8(
+            imagesViewController = imagesViewController,
             detailPokemon = detailPokemon,
             paddingText = paddingText
         )

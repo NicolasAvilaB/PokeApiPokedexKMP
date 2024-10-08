@@ -26,6 +26,8 @@ fun getColorsTheme(): DarkModeColors {
     val isDarkMode = SessionCache.isDarkMode()
 
     val purple = Color(0xFF6A66FF)
+    val blueSea = if (isDarkMode) Color(0xFF454FB8) else Color.LightGray
+    val redHead = if (isDarkMode) Color(0xFF8E3218)else Color(0xFFCC360D)
     val colorExpenseItem = if (isDarkMode) Color(0xFF090808) else Color(0xFFF1F1F1)
     val backgroundColor = if (isDarkMode) Color(0xFF1E1C1C) else Color.White
     val textColor = if (isDarkMode) Color.White else Color.Black
@@ -34,8 +36,10 @@ fun getColorsTheme(): DarkModeColors {
 
     return DarkModeColors(
         purple = purple,
+        blueSea = blueSea,
         colorExpenseItem = colorExpenseItem,
         background = backgroundColor,
+        redHead = redHead,
         textColor = textColor,
         addIconColor = addIconColor,
         colorArrowRound = colorArrowRound,

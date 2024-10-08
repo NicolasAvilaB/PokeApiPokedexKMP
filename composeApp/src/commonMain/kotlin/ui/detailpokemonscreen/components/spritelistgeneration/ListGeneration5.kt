@@ -11,15 +11,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
-import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.ImagePokemon
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.text.PokemonText18
+import imagesview.ImagesViewController
 
 @Composable
 fun ListGeneration5(
     detailPokemon: RemoteListDetailPokemon,
-    paddingText: Dp
+    paddingText: Dp,
+    imagesViewController: ImagesViewController
 ) {
     val generation = detailPokemon.sprites?.versions?.generationv
+    fun matchUrlPokemon(): List<String?> {
+        return listOf(
+            generation?.blackwhite?.backdefault,
+            generation?.blackwhite?.backfemale,
+            generation?.blackwhite?.backshiny,
+            generation?.blackwhite?.backshinyfemale,
+            generation?.blackwhite?.frontdefault,
+            generation?.blackwhite?.frontfemale,
+            generation?.blackwhite?.frontshiny,
+            generation?.blackwhite?.frontshinyfemale
+        )
+    }
     if (generation?.blackwhite?.animated?.backdefault != null)
         Card(
             modifier = Modifier
@@ -36,20 +49,13 @@ fun ListGeneration5(
                     .height(150.dp)
                     .padding(paddingText)
             ) {
-
-                /*generation.blackwhite?.animated.let { sprite ->
-                    sprite?.javaClass?.declaredFields?.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
+                matchUrlPokemon().forEach { url ->
+                    url?.let { result ->
+                        item {
+                            imagesViewController.headerImage(result)
                         }
                     }
-                }*/
+                }
             }
         }
 }

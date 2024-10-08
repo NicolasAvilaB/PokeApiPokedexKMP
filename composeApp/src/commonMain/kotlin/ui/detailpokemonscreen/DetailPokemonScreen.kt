@@ -1,10 +1,14 @@
 package com.pokemon.ui.pokeapipokedex.ui.detailpokemon
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Apps
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -45,7 +49,7 @@ fun DetailPokemonScreen(
                 backgroundColor = colors.background,
                 title = {
                     Text(
-                        text = "Pokedex - Lista de Pokemons",
+                        text = "Detalle Pokemón",
                         fontSize = 25.sp,
                         color = colors.textColor
                     )
@@ -53,9 +57,10 @@ fun DetailPokemonScreen(
                 navigationIcon = {
                     IconButton(onClick = { navGo.popBackStack.invoke() }) {
                         Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Volver",
-                            tint = MaterialTheme.colorScheme.onPrimary
+                            modifier = Modifier.padding(10.dp),
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Menu",
+                            tint = colors.textColor
                         )
                     }
                 },
@@ -95,10 +100,15 @@ fun DetailPokemonContent(
         }
 
         is ErrorUiState ->{
+            Column(
+                modifier = Modifier.padding(paddingValues)
+            ) {
+                Text(""+currentState.error)
                 ErrorState(
                     intentHandler = intentHandler,
                     namePokemon = namePokemon
                 )
+            }
 
         }
         LoadingUiState -> LoadingState()

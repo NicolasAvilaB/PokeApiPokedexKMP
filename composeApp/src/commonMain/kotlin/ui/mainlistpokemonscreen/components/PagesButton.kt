@@ -1,5 +1,6 @@
 package ui.mainlistpokemonscreen.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,13 +27,19 @@ fun PagesButton(
     colors: DarkModeColors,
 ) {
     Row(
-        modifier = Modifier.fillMaxSize().padding(2.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colors.background)
+            .padding(2.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Button(
-            modifier = Modifier.weight(1f).fillMaxHeight(),
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
             colors = ButtonDefaults.buttonColors(
-                containerColor = colors.purple
+                containerColor = colors.purple,
+                disabledContainerColor = colors.colorExpenseItem
             ),
             enabled = number.value != 0,
             onClick = {
@@ -44,10 +51,12 @@ fun PagesButton(
                 }
             },
         ) {
-            Text(text = "<- Volver",
+            Text(
+                text = "<- Volver",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = colors.textColor)
+                color = colors.textColor
+            )
         }
         Button(
             modifier = Modifier.weight(1f).fillMaxHeight(),

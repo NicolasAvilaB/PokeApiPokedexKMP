@@ -12,14 +12,30 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.pokemon.ui.pokeapipokedex.data.models.detailpokemon.RemoteListDetailPokemon
 import com.pokemon.ui.pokeapipokedex.ui.detailpokemon.components.text.PokemonText18
+import imagesview.ImagesViewController
 
 @Composable
 fun ListGeneration3(
     detailPokemon: RemoteListDetailPokemon,
-    paddingText: Dp
+    paddingText: Dp,
+    imagesViewController: ImagesViewController
 ) {
     val generation = detailPokemon.sprites?.versions?.generationiii
-    if (generation?.emerald?.frontdefault != null)
+    fun matchUrlPokemon(): List<String?> {
+        return listOf(
+            generation?.emerald?.frontdefault,
+            generation?.emerald?.frontshiny,
+            generation?.fireredleafgreen?.backdefault,
+            generation?.fireredleafgreen?.backshiny,
+            generation?.fireredleafgreen?.frontdefault,
+            generation?.fireredleafgreen?.frontshiny,
+            generation?.rubysapphire?.backdefault,
+            generation?.rubysapphire?.backshiny,
+            generation?.rubysapphire?.frontdefault,
+            generation?.rubysapphire?.frontshiny,
+        )
+    }
+    if (generation?.emerald?.frontdefault != null) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -35,46 +51,14 @@ fun ListGeneration3(
                     .height(150.dp)
                     .padding(paddingText)
             ) {
-
-                /*generation.emerald?.let { sprite ->
-                    sprite.javaClass.declaredFields.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
+                matchUrlPokemon().forEach { url ->
+                    url?.let { result ->
+                        item {
+                            imagesViewController.headerImage(result)
                         }
                     }
                 }
-                generation.fireredleafgreen?.let { sprite ->
-                    sprite.javaClass.declaredFields.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
-                        }
-                    }
-                }
-                generation.rubysapphire?.let { sprite ->
-                    sprite.javaClass.declaredFields.forEach { field ->
-                        field.isAccessible = true
-                        val url = field.get(sprite) as? String
-                        url?.let { result ->
-                            item {
-                                ImagePokemon(
-                                    painter = rememberAsyncImagePainter(result),
-                                )
-                            }
-                        }
-                    }
-                }*/
             }
         }
+    }
 }
