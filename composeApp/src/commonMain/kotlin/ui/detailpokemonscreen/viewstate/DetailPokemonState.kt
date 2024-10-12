@@ -45,7 +45,7 @@ fun DetailPokemonState(
             .fillMaxSize()
 
     ) {
-        Row(modifier = Modifier.height(210.dp)) {
+        Row(modifier = Modifier.height(260.dp)) {
             HeaderImage(
                 imagesViewController = imagesViewController,
                 detailPokemon = detailPokemon,

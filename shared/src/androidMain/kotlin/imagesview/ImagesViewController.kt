@@ -1,6 +1,7 @@
 package imagesview
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -21,6 +22,7 @@ actual class ImagesViewController actual constructor() {
             contentDescription = null,
             modifier = Modifier
                 .width(150.dp)
+                .fillMaxHeight(0.83f)
                 .clip(shape = RoundedCornerShape(11.dp)),
             contentScale = ContentScale.Crop
         )

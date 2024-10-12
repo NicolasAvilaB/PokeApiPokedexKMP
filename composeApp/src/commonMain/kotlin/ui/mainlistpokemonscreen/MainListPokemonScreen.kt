@@ -1,9 +1,7 @@
 package ui.mainlistpokemonscreen
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -16,10 +14,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import navigation.NavGo
 import presentation.mainlistpokemon.events.MainListPokemonUIState
+import presentation.mainlistpokemon.events.MainListPokemonUIState.DisplayListPokemonUiState
+import presentation.mainlistpokemon.events.MainListPokemonUIState.ErrorUiState
+import presentation.mainlistpokemon.events.MainListPokemonUIState.LoadingUiState
 import theme.DarkModeColors
-import ui.mainlistpokemonscreen.views.ErrorState
-import ui.mainlistpokemonscreen.views.LoadingState
-import ui.mainlistpokemonscreen.views.MainListPokemonState
+import ui.mainlistpokemonscreen.views.ErrorView
+import ui.mainlistpokemonscreen.views.LoadingView
+import ui.mainlistpokemonscreen.views.MainListPokemonView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,8 +67,8 @@ fun ListPokemonContent(
     val number = remember { mutableStateOf(0) }
 
     when (val currentState = uiState){
-        is MainListPokemonUIState.DisplayListPokemonUiState -> {
-            MainListPokemonState(
+        is DisplayListPokemonUiState -> {
+            MainListPokemonView(
                 listPokemonItems = currentState.listPokemon,
                 intentHandler = intentHandler,
                 navGo = navGo,
@@ -76,16 +77,10 @@ fun ListPokemonContent(
                 paddingValues = paddingValues
             )
         }
-        is MainListPokemonUIState.ErrorUiState -> {
-            Column(
-                modifier = Modifier.padding(paddingValues)
-            ) {
-                Text(""+currentState.error)
-            }
-            ErrorState(intentHandler = intentHandler, number = number)
-        }
-        MainListPokemonUIState.LoadingUiState -> {
-            LoadingState()
-        }
+        is ErrorUiState -> ErrorView(
+            intentHandler = intentHandler,
+            number = number
+        )
+        LoadingUiState -> LoadingView(colors)
     }
 }

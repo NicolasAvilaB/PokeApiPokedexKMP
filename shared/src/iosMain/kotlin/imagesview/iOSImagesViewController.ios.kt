@@ -20,7 +20,7 @@ actual class ImagesViewController actual constructor() {
             contentDescription = null,
             modifier = Modifier
                 .width(150.dp)
-                .fillMaxHeight(0.8f)
+                .fillMaxHeight(0.83f)
                 .clip(MaterialTheme.shapes.small),
             contentScale = Crop
         )

@@ -14,7 +14,7 @@ import ui.mainlistpokemonscreen.components.ListPokemon
 import ui.mainlistpokemonscreen.components.PagesButton
 
 @Composable
-fun MainListPokemonState(
+fun MainListPokemonView(
     listPokemonItems: RemoteListPokemon,
     intentHandler: MainListPokemonIntentHandler,
     number: MutableState<Int>,

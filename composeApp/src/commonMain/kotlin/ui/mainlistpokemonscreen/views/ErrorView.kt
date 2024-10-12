@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import ui.mainlistpokemonscreen.MainListPokemonIntentHandler
 
 @Composable
-fun ErrorState(
+fun ErrorView(
     intentHandler: MainListPokemonIntentHandler,
     number: MutableState<Int>
 ) {
