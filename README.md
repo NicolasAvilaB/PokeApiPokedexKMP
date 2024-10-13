@@ -19,6 +19,8 @@ Proyecto desarrollado en Koltin multiplatform con target Android e iOS.
 
 Project developed at Kotlin Multiplatform with targeting Android and iOS.
 
+![Grabación de pantalla 2024-10-13 a la(s) 12 24 16 (1)](https://github.com/user-attachments/assets/8a8d3b9a-3940-4bbe-9f12-d5c7342266a6)
+
 # PokeApi Pokédex (Español)
 
 Atrapalos a todos, pokedex desarrollada usando como base los endpoints Api del sitio https://pokeapi.co/, carga una lista de Pokemons de un total de 1302 (incluye megaevoluciones, gigamax etc), si pinchas cada pokémon podrás ver el detalle de cada uno, ofreciendo descripción de habilidades, tipos, stats, sprites, grito del mismo, etc.
